@@ -1,5 +1,5 @@
-from maps import *
-from utils.rearrange import rearrange_unicode_text
+from unicodeconverter.maps import *
+from unicodeconverter.utils.rearrange import rearrange_unicode_text
 
 class UnicodeConverter:
     def __init__(self):
