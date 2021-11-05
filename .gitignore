@@ -4,4 +4,4 @@ __pycache__
 
 # bulk files
 *.out
-
+*.pyc
