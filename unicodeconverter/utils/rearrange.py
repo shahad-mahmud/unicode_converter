@@ -37,7 +37,7 @@ def rearrange_unicode_text(text: str):
             while True:
                 if i - j < 0:
                     break                
-                if is_bangla_consonant(text[i - j]) and not is_bangla_halant(text[i - j - 1]):
+                if is_bangla_consonant(text[i - j]) and is_bangla_halant(text[i - j - 1]):
                     j += 2
                 elif j ==1 and is_bangla_kar(text[i - j]):
                     j += 1
@@ -51,7 +51,7 @@ def rearrange_unicode_text(text: str):
             temp_text += text[i + 2:]
             
             text = temp_text
-            i += 1
+            i += 2
             continue
         
         if is_bangla_pre_kar(text[i]) and not is_space(text[i+1]) and i < len(text) - 1:

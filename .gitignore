@@ -1,3 +1,7 @@
 # dirs
 .vscode
+__pycache__
+
+# bulk files
+*.out
 
