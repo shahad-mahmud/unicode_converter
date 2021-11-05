@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.1.0b1'
+VERSION = '0.1.0b5'
 
-with open("readme.md") as f:
+with open("README.md") as f:
     long_description = f.read()
 
 setup(
@@ -13,11 +13,11 @@ setup(
     long_description_content_type="text/markdown",
     author='Md. Shahad Mahmud Chowdhury',
     author_email='shahad9381@gmail.com',
-    package_dir={'':'unicodeconverter'},
-    packages=find_packages('unicodeconverter'),
+    packages=find_packages(),
+    package_data={'':['readme.md']},
     url='https://github.com/shahad-mahmud/unicode_converter',
     keywords=['bangla unicode converter', 'bijoy to unicode'],
-    python_requires='>=3.3',
+    python_requires='>=3.6',
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
