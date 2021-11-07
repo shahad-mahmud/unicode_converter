@@ -1,4 +1,5 @@
 from unicodeconverter.utils.checkers import *
+from unicodeconverter import lists
 
 
 def rearrange_unicode_text(text: str) -> str:
@@ -91,3 +92,81 @@ def rearrange_unicode_text(text: str) -> str:
         i += 1
 
     return text
+
+
+def rearrange_bijoy_text(text: str) -> str:
+    """Rearrange the Bijoy characters to convert to Unicode directly
+
+    Args:
+        text (str): The bijoy text to be rearranged.
+
+    Returns:
+        str: The rearranged bijoy text.
+    """
+    segments = text.split('\t')
+    n_segments = len(segments)
+
+    i = 0
+    while i < n_segments:
+        if segments[i] == '':
+            del segments[i]
+            n_segments -= 1
+            continue
+        if segments[i] == '›':
+            segments[i] = segments[i] + segments[i + 1]
+            del segments[i + 1]
+            n_segments -= 1
+        i += 1
+
+    i = 0
+    while i < (len(segments)):
+        if segments[i] == '‡' or segments[i] == "†":
+            # handle o-kar and ou-kar
+            if i < len(segments) - 2 and segments[i+2] == 'v':
+                segments[i], segments[i+1] = segments[i+1], segments[i]
+                i += 2
+            elif i < len(segments) - 2 and segments[i+2] == 'Š':
+                segments[i], segments[i+1] = segments[i+1], segments[i]
+                i += 2
+            else:
+                # Handle e-kar
+                j = 1
+                if i + 2 < len(segments):
+                    # Handle ref
+                    if segments[i + 2] == '©':
+                        segments[i], segments[i+2] = segments[i+2], segments[i]
+                        i += 3
+                        continue
+                    # handle fola
+                    if segments[i + j + 1] in lists.bijoy_fola:
+                        j += 1
+
+                for k in range(j):
+                    segments[i + k], segments[i + k +
+                                              1] = segments[i+k+1], segments[i+k]
+                i += j
+        # handle all kars
+        elif segments[i] in lists.bijoy_pre_kars and i < len(segments) - 1:
+            j = 1
+            if i + 2 < len(segments):
+                # check if next character is a ref
+                if segments[i + 2] == '©':
+                    segments[i], segments[i+2] = segments[i+2], segments[i]
+                    i += 3
+                    continue
+
+                # check if the next character is a fola
+                if segments[i + j + 1] in lists.bijoy_fola:
+                    j += 1
+
+            for k in range(j):
+                segments[i + k], segments[i + k +
+                                          1] = segments[i+k+1], segments[i+k]
+            i += j
+        # Handle ref
+        elif segments[i] == '©':
+            segments[i], segments[i-1] = segments[i-1], segments[i]
+
+        i += 1
+
+    return ''.join(segments)

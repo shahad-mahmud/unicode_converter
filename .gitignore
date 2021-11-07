@@ -1,6 +1,7 @@
 # dirs
 .vscode
 __pycache__
+resources
 
 # distribution
 dist/
@@ -10,3 +11,7 @@ eggs/
 # bulk files
 *.out
 *.pyc
+.~*
+
+# files
+for_test.py
