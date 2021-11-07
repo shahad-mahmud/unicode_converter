@@ -95,9 +95,17 @@ def rearrange_unicode_text(text: str) -> str:
 
 
 def rearrange_bijoy_text(text: str) -> str:
+    """Rearrange the Bijoy characters to convert to Unicode directly
+
+    Args:
+        text (str): The bijoy text to be rearranged.
+
+    Returns:
+        str: The rearranged bijoy text.
+    """
     segments = text.split('\t')
     n_segments = len(segments)
-    
+
     i = 0
     while i < n_segments:
         if segments[i] == '':
@@ -109,7 +117,7 @@ def rearrange_bijoy_text(text: str) -> str:
             del segments[i + 1]
             n_segments -= 1
         i += 1
-    
+
     i = 0
     while i < (len(segments)):
         if segments[i] == '‡' or segments[i] == "†":
@@ -132,7 +140,7 @@ def rearrange_bijoy_text(text: str) -> str:
                     # handle fola
                     if segments[i + j + 1] in lists.bijoy_fola:
                         j += 1
-                
+
                 for k in range(j):
                     segments[i + k], segments[i + k +
                                               1] = segments[i+k+1], segments[i+k]
@@ -146,7 +154,7 @@ def rearrange_bijoy_text(text: str) -> str:
                     segments[i], segments[i+2] = segments[i+2], segments[i]
                     i += 3
                     continue
-                
+
                 # check if the next character is a fola
                 if segments[i + j + 1] in lists.bijoy_fola:
                     j += 1
