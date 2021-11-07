@@ -18,6 +18,9 @@ def convert_bijoy_to_unicode(text: str) -> str:
     # print('TEXT AFTER REGEX:', text)
     # [!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~]+
     # print(text)
+    for pre_pattern, post_pattern in bijoy_pre_map.items():
+        text = text.replace(pre_pattern, post_pattern)
+        
     for bijoy_char, uni_char in bijoy_to_unicode.items():
         # text = text.replace(bijoy_char, uni_char)
         # print(f'bijoy: {bijoy_char}')
