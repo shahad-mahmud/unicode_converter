@@ -3,7 +3,7 @@ import pandas as pd
 
 import unicodeconverter as uc
 
-    
+
 class TestUnicodeConverter(unittest.TestCase):
     def test_convert_bijoy_to_unicode(self):
         test_file_path = 'unicodeconverter_tests.csv'
@@ -11,7 +11,7 @@ class TestUnicodeConverter(unittest.TestCase):
 
         bijoy_texts = test_df['bijoy_text'].tolist()
         unicode_texts = test_df['unicode_text'].tolist()
-        
+
         self.maxDiff = None
 
         for bijoy, unicode in zip(bijoy_texts, unicode_texts):
@@ -26,7 +26,7 @@ class TestUnicodeConverter(unittest.TestCase):
                             print(f'{c1} -- {ord(c1)}', f'{c2} -- {ord(c2)}')
             print()
             self.assertEqual(unicode.strip(), converted.strip())
-            
-            
+
+
 if __name__ == '__main__':
     unittest.main()

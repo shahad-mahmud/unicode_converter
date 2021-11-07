@@ -14,7 +14,7 @@ setup(
     author='Md. Shahad Mahmud Chowdhury',
     author_email='shahad9381@gmail.com',
     packages=find_packages(),
-    package_data={'':['readme.md']},
+    package_data={'': ['readme.md']},
     url='https://github.com/shahad-mahmud/unicode_converter',
     keywords=['bangla unicode converter', 'bijoy to unicode'],
     python_requires='>=3.6',
