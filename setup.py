@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.1.0b7'
+with open("version.txt") as f:
+    VERSION = f.read()
 
 with open("README.md") as f:
     long_description = f.read()
