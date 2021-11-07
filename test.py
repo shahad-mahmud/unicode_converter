@@ -16,8 +16,8 @@ class TestUnicodeConverter(unittest.TestCase):
 
         for bijoy, unicode in zip(bijoy_texts, unicode_texts):
             converted = uc.convert_bijoy_to_unicode(bijoy)
-            print(unicode)
-            print(converted)
+            print(unicode.strip())
+            print(converted.strip())
             for unicode_word, converted_word in zip(unicode.split(), converted.split()):
                 if unicode_word != converted_word:
                     print(unicode_word, converted_word)

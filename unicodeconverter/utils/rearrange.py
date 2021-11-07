@@ -14,10 +14,10 @@ def rearrange_unicode_text(text: str) -> str:
     """
     i = 0
     while i < len(text):
-        # print(f"{i} - {text[i]} - {text}")
+        # # print(f"{i} - {text[i]} - {text}")
         if is_bangla_halant(text[i]) and i < len(text) - 1:
             if (is_bangla_kar(text[i - 1]) or is_bangla_nukta(text[i - 1])):
-                # print("hasanta - nukta")
+                # # print("hasanta - nukta")
                 temp_text = text[:i - 1]
                 temp_text += text[i]
                 temp_text += text[i + 1]
@@ -27,7 +27,7 @@ def rearrange_unicode_text(text: str) -> str:
                 text = temp_text
 
             if text[i-1] == 'র' and not is_bangla_halant(text[i-2]) and is_bangla_kar(text[i+1]):
-                # print("hasanta - ro")
+                # # print("hasanta - ro")
                 temp_text = text[:i - 1]
                 temp_text += text[i + 1]
                 temp_text += text[i - 1]
@@ -38,7 +38,7 @@ def rearrange_unicode_text(text: str) -> str:
 
         # Handle ref (রেফ)
         if text[i] == 'র' and is_bangla_halant(text[i + 1]) and not is_bangla_halant(text[i-1]) and i < len(text) - 1:
-            # print("only ro")
+            # # print("only ro")
             j = 1
 
             while True:
@@ -62,7 +62,7 @@ def rearrange_unicode_text(text: str) -> str:
             continue
 
         if is_bangla_pre_kar(text[i]) and not is_space(text[i+1]) and i < len(text) - 1:
-            # print("pre_kar - space false")
+            # # print("pre_kar - space false")
             temp_text = text[:i]
             j = 1
 
@@ -88,7 +88,7 @@ def rearrange_unicode_text(text: str) -> str:
             i += j
 
         if text[i] == 'ঁ' and is_bangla_post_kar(text[i + 1]) and i < len(text) - 1:
-            # print("chondra")
+            # # print("chondra")
             temp_text = text[:i]
             temp_text += text[i + 1]
             temp_text += text[i]
@@ -118,30 +118,30 @@ def rearrange_bijoy_text(text: str) -> str:
     
     i = 0
     while i < (len(segments)):
-        print(f'{i} -- {segments[i]} -- {segments}')
+        # print(f'{i} -- {segments[i]} -- {segments}')
         
 
         if segments[i] == '‡' or segments[i] == "†":
             # handle o-kar and ou-kar
             if i < len(segments) - 2 and segments[i+2] == 'v':
-                print('o-kar')
+                # print('o-kar')
                 segments[i], segments[i+1] = segments[i+1], segments[i]
                 i += 2
             elif i < len(segments) - 2 and segments[i+2] == 'Š':
-                print('ou-kar')
+                # print('ou-kar')
                 segments[i], segments[i+1] = segments[i+1], segments[i]
                 i += 2
             else:
-                print('e-kar')
+                # print('e-kar')
                 j = 1
                 if i + 2 < len(segments):
                     if segments[i + 2] == '©':
-                        print('e-kar -- ref')
+                        # print('e-kar -- ref')
                         segments[i], segments[i+2] = segments[i+2], segments[i]
                         i += 3
                         continue
                     if segments[i + j + 1] in lists.bijoy_fola:
-                        print('e-kar with fola')
+                        # print('e-kar with fola')
                         j += 1
                 for k in range(j):
                     segments[i + k], segments[i + k +
@@ -149,12 +149,12 @@ def rearrange_bijoy_text(text: str) -> str:
                 i += j
         # handle all kars
         elif segments[i] in lists.bijoy_pre_kars and i < len(segments) - 1:
-            print('all-kars', segments[i])
+            # print('all-kars', segments[i])
             # check if next character is a ref
             j = 1
             if i + 2 < len(segments):
                 if segments[i + 2] == '©':
-                    print('all-kars -- ref')
+                    # print('all-kars -- ref')
                     segments[i], segments[i+2] = segments[i+2], segments[i]
                     i += 3
                     continue
@@ -162,7 +162,7 @@ def rearrange_bijoy_text(text: str) -> str:
                 
                 # check if the next character is a fola
                 if segments[i + j + 1] in lists.bijoy_fola:
-                    print('all-kars -- fola')
+                    # print('all-kars -- fola')
                     j += 1
 
             for k in range(j):
@@ -171,9 +171,9 @@ def rearrange_bijoy_text(text: str) -> str:
             i += j
         # Handle ref
         elif segments[i] == '©':
-            print('ref')
+            # print('ref')
             # if segments[i - 2] in lists.bijoy_kars:
-            #     print('ref -- kar')
+            #     # print('ref -- kar')
             #     segments[i], segments[i-2] = segments[i-2], segments[i]
             # else:
             segments[i], segments[i-1] = segments[i-1], segments[i]
@@ -181,6 +181,6 @@ def rearrange_bijoy_text(text: str) -> str:
         # handle r-fola
         # elif
         i += 1
-    print(f'{i} -- <> -- {segments}')
+    # print(f'{i} -- <> -- {segments}')
 
     return ''.join(segments)

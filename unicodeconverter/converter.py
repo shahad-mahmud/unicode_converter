@@ -13,8 +13,12 @@ def convert_bijoy_to_unicode(text: str) -> str:
         str: Converted Unicode text.
     """
 
-    regex_pattern = re.compile(',')
-    text = re.sub(regex_pattern, handle_punc, text)
+    # regex_pattern = re.compile(',')
+    # text = re.sub(regex_pattern, handle_punc, text)
+    
+    text = re.sub('([.,!?()])', r'\t\1', text)
+    text = re.sub('\s{2,}', ' ', text)
+    
     # print('TEXT AFTER REGEX:', text)
     # [!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~]+
     # print(text)
