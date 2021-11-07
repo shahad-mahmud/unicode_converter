@@ -303,7 +303,8 @@ bijoy_to_unicode = {
     "&": "্",
     "…": "ৃ",
     # self defined
-    ' ': ' '
+    ' ': ' ',
+    '²': 'ক্ষ্ম'
 }
 
 vowel_to_kar = {
