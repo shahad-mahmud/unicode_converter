@@ -12,38 +12,22 @@ def convert_bijoy_to_unicode(text: str) -> str:
     Returns:
         str: Converted Unicode text.
     """
-
-    # regex_pattern = re.compile(',')
-    # text = re.sub(regex_pattern, handle_punc, text)
-    
+    # Handle punctuations
     text = re.sub('([.,!?()])', r'\t\1', text)
     text = re.sub('\s{2,}', ' ', text)
     
-    # print('TEXT AFTER REGEX:', text)
-    # [!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~]+
-    # print(text)
+    # Handle multiple char tokens
     for pre_pattern, post_pattern in bijoy_pre_map.items():
         text = text.replace(pre_pattern, post_pattern)
-        
-    for bijoy_char, uni_char in bijoy_to_unicode.items():
-        # text = text.replace(bijoy_char, uni_char)
-        # print(f'bijoy: {bijoy_char}')
+    
+    # Segmentation    
+    for bijoy_char, _ in bijoy_to_unicode.items():
         text = text.replace(bijoy_char, f'\t{bijoy_char}')
-        # print(text)
-        # print()
     
-    # print('TAB TEXT:', text)    
-    # text = rearrange_unicode_text(text)
-    bij = rearrange_bijoy_text(text.strip())
-    # print(bij)
+    rearranged_bijoy_text = rearrange_bijoy_text(text.strip())
     
+    # Convert to Unicode
     for bijoy_char, uni_char in bijoy_to_unicode.items():
-        # text = text.replace(bijoy_char, uni_char)
-        bij = bij.replace(bijoy_char, uni_char)
-    
-    # print(bij)
-    
-    return bij.strip()
-
-def handle_punc(m):
-    return f'\t{m.group(0)}'
+        rearranged_bijoy_text = rearranged_bijoy_text.replace(bijoy_char, uni_char)
+        
+    return rearranged_bijoy_text.strip()
