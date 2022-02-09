@@ -13,7 +13,7 @@ def convert_bijoy_to_unicode(text: str) -> str:
         str: Converted Unicode text.
     """
     # Handle punctuations
-    text = re.sub('([.,!?();])', r'\t\1', text)
+    text = re.sub('([.,!?();:-])', r'\t\1', text)
     text = re.sub('\s{2,}', ' ', text)
     
     # Handle new lines

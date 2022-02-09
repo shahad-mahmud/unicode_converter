@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open("version.txt") as f:
+with open("unicodeconverter/version.txt") as f:
     VERSION = f.read()
 
 with open("README.md") as f:
@@ -15,7 +15,7 @@ setup(
     author='Md. Shahad Mahmud Chowdhury',
     author_email='shahad9381@gmail.com',
     packages=find_packages(),
-    package_data={'': ['readme.md']},
+    package_data={'unicodeconverter': ['version.txt']},
     url='https://github.com/shahad-mahmud/unicode_converter',
     keywords=['bangla unicode converter', 'bijoy to unicode'],
     python_requires='>=3.6',
