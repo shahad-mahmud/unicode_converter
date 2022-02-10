@@ -1,7 +1,6 @@
 import re
-import string
 from unicodeconverter.maps import *
-from unicodeconverter.utils.rearrange import rearrange_bijoy_text, rearrange_unicode_text
+from unicodeconverter.utils.rearrange import rearrange_bijoy_text
 
 def convert_bijoy_to_unicode(text: str) -> str:
     """Converts Bijoy text to Unicode.

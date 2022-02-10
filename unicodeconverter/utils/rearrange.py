@@ -165,6 +165,8 @@ def rearrange_bijoy_text(text: str) -> str:
             i += j
         # Handle ref
         elif segments[i] == '©':
+            if segments[i - 1] in lists.bijoy_fola:
+                segments[i], segments[i - 2] = segments[i - 2], segments[i]
             segments[i], segments[i-1] = segments[i-1], segments[i]
 
         i += 1
