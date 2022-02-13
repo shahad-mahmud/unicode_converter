@@ -7,6 +7,7 @@ resources
 dist/
 eggs/
 *.egg-info/
+build/**
 
 # bulk files
 *.out
